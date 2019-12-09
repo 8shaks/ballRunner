@@ -81,10 +81,6 @@ class IndexPage extends Component {
     if(this.state.results.length === 0){
       results = (<div className={indexStyles.results}><h1 style={{margin:'1em 1em'}}>Fill out the form to find the nearest courts!</h1></div>)
     }else{
-      // console.log(this.state)
-      // results = (<div className={indexStyles.results}>{this.state.results.map((loc)=>{
-      //   return (<div className={indexStyles.result_loc}>{loc.name}</div>)
-      // })}</div>)
       results = <ResultsFeed locations={this.state.results}/>
     }
     return (

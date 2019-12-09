@@ -8,7 +8,7 @@ const courtsFinder = (type) => {
         console.log(`${type} _!`)
         // console.log(res.data.results[0])   
 
-console.log(res.data.results[0])
+
         for(let i =0; i<res.data.results.length;i++){
             if(res.data.results[i].types.includes("university") || res.data.results[i].types.includes("health") || res.data.results[i].name.includes("Teacher")|| res.data.results[i].name.includes("Music")|| res.data.results[i].name.includes("Academy") || res.data.results[i].name.includes("Preschool") || res.data.results[i].name.includes("Private School")|| res.data.results[i].name.includes("Tutoring") || count >=5 ){
             }else{

@@ -30,6 +30,7 @@ async function courtsFinder (type,lat,lng,cb) {
 router.post("/", (req, res) => {
     const apple = req.body.streetAddress.replace(/ /g,"+")
     const province = req.body.province.replace(/ /g,"+")
+    console.log(req.body)
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&address=${apple},+${req.body.city},+${province},+${req.body.country}`).then((plow) => {
         req.body.lat = plow.data.results[0].geometry.location.lat
         req.body.lng = plow.data.results[0].geometry.location.lng
