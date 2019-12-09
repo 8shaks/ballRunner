@@ -1,12 +1,9 @@
 const axios = require("axios")
 const express = require("express");
 const router = express.Router();
+var async = require('async');
 
-
-
-let lat,lng
-let locations =  []
-
+let locations= []
 
 const dataChecker = (results,count) => {
     if(results.types.includes("university") || results.types.includes("health") || results.name.includes("Teacher")|| results.name.includes("Music")|| results.name.includes("Academy") || results.name.includes("Preschool") || results.name.includes("Private School")|| results.name.includes("Tutoring") || count >=5 ){
@@ -15,48 +12,46 @@ const dataChecker = (results,count) => {
         return true
     }
 }
-
-
-
-const courtsFinder = (type) => {
+async function courtsFinder (type,lat,lng,cb) {
     let count = 0
-    axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&location=${lat+","+lng}&rankby=distance&type=${type}`).then((res)=>{
-        console.log(`${type} _!`)
-        // console.log(res.data.results[0])   
-
+  
+    await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&location=${lat+","+lng}&rankby=distance&type=${type}`).then((res)=>{
         for(let i =0; i<res.data.results.length;i++){
             if(dataChecker(res.data.results[i],count)){
                 count++
                 locations.push(res.data.results[i])
             }
-       
         }
-        // axios.get("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&input=community+centre&inputtype=textquery&fields=formatted_address,name").then((com)=>{
-        //     console.log(com.data)
-        //     })
-    }).then(()=>{
-
-
     })
+ 
     return true
 }
 
 router.post("/", (req, res) => {
-    return res.json({sucess:req.body.yo})
-//     axios.get("https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&address=28+Lor+Sari,+Singapore").then((plow) => {
-//         lat = plow.data.results[0].geometry.location.lat
-//         lng = plow.data.results[0].geometry.location.lng
-// // keyword=community+centre
-//     }).then(() => {
-    
-//         courtsFinder("school")
+    const apple = req.body.streetAddress.replace(/ /g,"+")
+    const province = req.body.province.replace(/ /g,"+")
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&address=${apple},+${req.body.city},+${province},+${req.body.country}`).then((plow) => {
+        req.body.lat = plow.data.results[0].geometry.location.lat
+        req.body.lng = plow.data.results[0].geometry.location.lng
+ 
+// keyword=community+centre
+    }).then(() => {
+       async function logger(){
+           let results =  await Promise.all([
+                courtsFinder("school",req.body.lat,req.body.lng),
+                courtsFinder("secondary_school",req.body.lat,req.body.lng),
+                courtsFinder("primary_school",req.body.lat,req.body.lng) 
+            ])
+           return results
+       }
+        logger().then((s)=>{
+            console.log(locations.length)
+            return res.json({locations:locations}) 
+       })
+    }).catch((err)=>{
+        console.log(err)
+    })
 
-//         courtsFinder("secondary_school")
-
-//         courtsFinder("primary_school")
-//         setTimeout(function(){locations.forEach((loc)=>{console.log(loc.name+'\n\n')}) }, 5000);
-//         return true
-//     })
 })
 
 

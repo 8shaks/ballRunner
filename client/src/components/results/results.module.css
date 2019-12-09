@@ -1,0 +1,72 @@
+.results{
+    width:45%;
+}
+.result_loc{
+    width:80%;
+    background-color:#E8E8E8;
+    border-bottom: 2px black solid;
+    padding:2em 0em 2em 2em;
+    margin:0 auto;
+
+}
+.result_loc div{
+   display: inline-block;
+   width:50%;
+   font-size: 1.15em;
+}
+.result_loc button{
+    background-color: #48CF4D;
+    color:white;
+    border:none;
+    float:right;
+    margin:0 1em;
+    font-size: 1.2em;
+    padding:0.5em;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.show{
+    background-color: #233D4D;
+    border:none;
+    color:white;
+    font-size: 1.25em;
+    display: block;
+    padding:0.5em;
+    margin:1em auto;
+    border-radius: 10px;
+}
+@media only screen and (max-width: 550px) {
+    .results{
+        width:100%;
+        margin: 2em auto;
+    }
+    .result_loc button{
+        font-size: 0.75em;
+        padding:0.5em;
+    }
+    .result_loc div{
+        font-size: 0.9em;
+    }
+}
+@media only screen and (max-width:769px) and (min-width:551px) {
+    .results{
+        width:100%;
+        margin: 2em auto;
+    }
+    .result_loc button{
+        font-size: 1.2em;
+        padding:0.5em;
+    }
+    .result_loc div{
+        font-size: 1.2em;
+    }
+}
+@media only screen and (max-width:1024px) and (min-width:770px) {
+    .result_loc button{
+        font-size: 0.9em;
+        padding:0.35em;
+    }
+    .result_loc div{
+        font-size: 1em;
+    }
+}
