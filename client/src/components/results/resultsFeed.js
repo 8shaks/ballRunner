@@ -1,5 +1,5 @@
 
-import Result from './Result'
+import Result from './result'
 import resultsStyles from './results.module.css'
 import React, { Component } from 'react'
 
