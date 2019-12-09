@@ -24,16 +24,7 @@ const courtsFinder = (type) => {
         //     })
     }).then(()=>{
 
-        // locations.forEach((loc) => {
-        //     // if(loc.name === "Arivakam Tamil Cultural Academy" ){
-        //     //     console.log(loc)
-        //     // + loc.types+"\n\n"
-        //     // }
-        //     console.log(loc.vicinity + " \n" + loc.name +" \n\n")
-        //     if(loc.name === "Qing Piano Teacher" ){
-        //         console.log(loc)
-        //     }
-        // })
+       
     })
     return true
 }
