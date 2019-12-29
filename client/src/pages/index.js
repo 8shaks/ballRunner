@@ -21,7 +21,8 @@ class IndexPage extends Component {
         city:false,
         province:false,
         streetAddress:false
-      }
+      },
+      apple:''
     }
   }
   isValid = () => {
@@ -75,14 +76,29 @@ class IndexPage extends Component {
       [e.target.name]:e.target.value
     })
   }
+  onShare = (e) =>{
+    if (navigator.share) {
+      const url = document.querySelector('link[rel=canonical]') ? document.querySelector('link[rel=canonical]').href : document.location.href;
+
+      navigator.share({
+        title: 'BallRunner',
+        url: url
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+      .catch(console.error);
+    } else {  
+      this.setState({apple:'sds'})
+    }
+  }
   render() {
     let results;
-
     if(this.state.results.length === 0){
       results = (<div className={indexStyles.results}><h1 style={{margin:'1em 1em'}}>Fill out the form to find the nearest courts!</h1></div>)
     }else{
       results = <ResultsFeed locations={this.state.results}/>
     }
+
     return (
       <Layout>
         <SEO title="Home" description='Find a basketball court!'/>
@@ -126,6 +142,8 @@ class IndexPage extends Component {
             </div>
             {results}
           </div>
+          <span onClick={this.onShare}>test 1</span>
+          {this.state.apple}
         </div>
       </Layout>   
     )
