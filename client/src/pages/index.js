@@ -7,7 +7,6 @@ import SEO from "../components/seo"
 import React, { Component } from 'react'
 import indexStyles from '../styles/index.module.css'
 import ResultsFeed from '../components/results/resultsFeed'
-
 class IndexPage extends Component {
   constructor(){
     super()

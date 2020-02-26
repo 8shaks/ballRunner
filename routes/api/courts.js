@@ -34,8 +34,6 @@ router.post("/", (req, res) => {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&address=${apple},+${req.body.city},+${province},+${req.body.country}`).then((plow) => {
         req.body.lat = plow.data.results[0].geometry.location.lat
         req.body.lng = plow.data.results[0].geometry.location.lng
- 
-// keyword=community+centre
     }).then(() => {
        async function logger(){
            let results =  await Promise.all([

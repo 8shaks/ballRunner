@@ -1,0 +1,120 @@
+/* The Modal (background) */
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+/* Modal Content/Box */
+.modal_content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.names_group{
+    display: flex;
+    justify-content: space-between;
+    margin:0;
+}
+.names_group div{
+    display: inline-block;
+    margin-bottom:0;
+    width:45%;
+}
+.names_group input{
+    width:100%;
+}
+.input_group{
+    margin:1.5em 0;
+}
+.input_group span{
+    display: block;
+    color:black;
+    margin-bottom: 0.5em;
+}
+.input_large{
+    width:100%;
+}
+.input_group textarea, .input_group input{
+    resize: none;
+    border : 1px grey solid;
+    color:black;
+}
+.submit_button{
+    display: block;
+    margin: 1em auto 1.5em auto;
+    width:100px;
+    text-align: center;
+    border:none;
+    color:white;
+    background-color: green;
+    border-radius: 5px;
+    font-size: 1.25em;
+}
+.error{
+    color:red !important;
+    display: block;
+    margin:0;
+}
+/* Mobile */
+@media only screen and (max-width: 550px) {
+    .login_form{
+        padding:1em 10%;
+    }
+    /* .names_group{
+        display: block;
+    } */
+    /* .names_group div{
+        display: block;
+        width:100%;
+        
+    }
+    .names_group input{
+        width:100%;
+    } */
+}
+
+/* Tablet */
+@media only screen and (max-width:769px) and (min-width:551px) {
+    .login_form{
+        padding:1em 15%;
+    }
+    
+}
+@media only screen and (max-width:1024px) and (min-width:770px) {
+    .login_form{
+        padding:1em 20%;
+    }
+
+}
+ @media only screen and (min-width:1624px) {
+    .login_form{
+        padding:1em 35%;
+    }
+
+}

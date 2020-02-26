@@ -3,26 +3,35 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const courts = require("./routes/api/courts");
 const path = require("path");
+const users = require("./routes/api/user");
+const mongoose = require("mongoose");
+const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// const db = require("./config/keys").mongoURI;
+const db = require("./config/keys").mongoURI;
 
-// app.use(passport.initialize());
+app.use(passport.initialize());
 
-// require("./config/passport.js")(passport);
+require("./config/passport.js")(passport);
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   console.log('sucess')
+//   // perform actions on the collection object
+//   client.close();
+// });
+mongoose
+  .connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch(err => console.log(err));
 
-// mongoose
-//   .connect(db, { useNewUrlParser: true })
-//   .then(() => {
-//     console.log("MongoDB connected");
-//   })
-//   .catch(err => console.log(err));
-
-// app.use("/api/users", users);
+app.use("/api/users", users);
 // app.use("/api/profile", profiles);
 app.use("/api/courts", courts);
 
