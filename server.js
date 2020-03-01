@@ -24,14 +24,14 @@ app.use(passport.initialize());
 //   // perform actions on the collection object
 //   client.close();
 // });
-mongoose
-  .connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
-  .then(() => {
-    console.log("MongoDB connected");
-  })
-  .catch(err => console.log(err));
+// mongoose
+//   .connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
+//   .then(() => {
+//     console.log("MongoDB connected");
+//   })
+//   .catch(err => console.log(err));
 
-app.use("/api/users", users);
+// app.use("/api/users", users);
 // app.use("/api/profile", profiles);
 app.use("/api/courts", courts);
 
