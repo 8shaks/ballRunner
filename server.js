@@ -16,7 +16,7 @@ const db = require("./config/keys").mongoURI;
 
 app.use(passport.initialize());
 
-require("./config/passport.js")(passport);
+// require("./config/passport.js")(passport);
 // const client = new MongoClient(uri, { useNewUrlParser: true });
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
