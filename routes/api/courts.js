@@ -2,7 +2,7 @@ const axios = require("axios")
 const express = require("express");
 const router = express.Router();
 var async = require('async');
-
+const keys = require("../../config/keys");
 
 const dataChecker = (results,count) => {
     if(results.types.includes("university") || results.types.includes("health") || results.name.includes("Teacher")|| results.name.includes("Music")|| results.name.includes("Academy") || results.name.includes("Preschool") || results.name.includes("Private School")|| results.name.includes("Tutoring") || count >=5 ){
@@ -14,7 +14,7 @@ const dataChecker = (results,count) => {
 async function courtsFinder (type,lat,lng,locations) {
     let count = 0
   
-    await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&location=${lat+","+lng}&rankby=distance&type=${type}`).then((res)=>{
+    await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${keys.googleAPI}&location=${lat+","+lng}&rankby=distance&type=${type}`).then((res)=>{
         for(let i =0; i<res.data.results.length;i++){
             if(dataChecker(res.data.results[i],count)){
                 count++
@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
     let locations= []
     const apple = req.body.streetAddress.replace(/ /g,"+")
     const province = req.body.province.replace(/ /g,"+")
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAs23RKXHdq6zt3qKjyvN8btWK6Fr1cxVw&address=${apple},+${req.body.city},+${province},+${req.body.country}`).then((plow) => {
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${keys.googleAPI}&address=${apple},+${req.body.city},+${province},+${req.body.country}`).then((plow) => {
         req.body.lat = plow.data.results[0].geometry.location.lat
         req.body.lng = plow.data.results[0].geometry.location.lng
     }).then(() => {
