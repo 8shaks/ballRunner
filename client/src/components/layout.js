@@ -21,21 +21,24 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  if (localStorage.jwtToken) {
-    setAuthToken(localStorage.jwtToken);
-    const decoded = jwt_decode(localStorage.jwtToken);
-  
-    store.dispatch(setCurrentUser(decoded));
-  
-    //Check for expired token
-  
-    const currentTime = Date.now() / 1000;
-    if (decoded.exp < currentTime) {
-      store.dispatch(logoutUser());
-      store.dispatch(clearProfile());
-      window.location.href = "login";
+  if (typeof window !== 'undefined'){
+    if (localStorage.jwtToken) {
+      setAuthToken(localStorage.jwtToken);
+      const decoded = jwt_decode(localStorage.jwtToken);
+    
+      store.dispatch(setCurrentUser(decoded));
+    
+      //Check for expired token
+    
+      const currentTime = Date.now() / 1000;
+      if (decoded.exp < currentTime) {
+        store.dispatch(logoutUser());
+        store.dispatch(clearProfile());
+        window.location.href = "login";
+      }
     }
   }
+ 
   return (
     <Provider store={store}>
       <Navbar/>

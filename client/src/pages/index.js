@@ -90,6 +90,7 @@ class IndexPage extends Component {
       this.setState({apple:'sds'})
     }
   }
+
   render() {
     let results;
     if(this.state.results.length === 0){

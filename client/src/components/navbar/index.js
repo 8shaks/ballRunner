@@ -32,6 +32,7 @@ login = () =>{
     //     login: !prevState.login
     // }))
 }
+
 render() {
     const { isAuthenticated, user } = this.props.auth;
     let navbarOptions, loginModal, registerModal;
