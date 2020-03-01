@@ -105,6 +105,7 @@ class IndexPage extends Component {
           <div className={indexStyles.topbar}/>
           <h1 className={indexStyles.header}>Trying to find some courts?</h1>
           <h2 className={indexStyles.sub_header}>We'll help you out</h2>
+          <i style={{textAlign:'center'}}>Please Note we are currently wokring on login functionality and it is not available yet.</i>
           <div className={indexStyles.flex_container}> 
             <div className={indexStyles.form}>
               <div className={indexStyles.input_group}>
@@ -141,7 +142,7 @@ class IndexPage extends Component {
             </div>
             {results}
           </div>
-          <span onClick={this.onShare}>test 1</span>
+          {/* <span onClick={this.onShare}>test 1</span> */}
           {this.state.apple}
         </div>
       </Layout>   

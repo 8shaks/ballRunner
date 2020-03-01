@@ -28,9 +28,9 @@ newPage = () => {
 }
 
 login = () =>{
-    this.setState(prevState => ({
-        login: !prevState.login
-    }))
+    // this.setState(prevState => ({
+    //     login: !prevState.login
+    // }))
 }
 render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -43,13 +43,13 @@ render() {
     navbarOptions=(                
         <ul>
         <li><a onClick={this.login}>Login</a></li>
-        <li><Link to='/services' onClick={this.newPage}>Sign up</Link></li>
-        <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li>
+        <li><a onClick={this.login}>Sign up</a></li>
+        {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
         {/* <li ><a>About Us</a></li> */}
         </ul>)
     return (
         <div className={this.state.navbarClass}> 
-            <Link to='/' onClick={this.newPage} className={navbarStyles.navbar_logo}>inkDown</Link>
+            <Link to='/' onClick={this.newPage} className={navbarStyles.navbar_logo}>BallRunner</Link>
             <div className={navbarStyles.menu_icon} onClick={this.expandMenu} style={{color:'white'}}><div className={navbarStyles.icon_line}/><div className={navbarStyles.icon_line}/><div className={navbarStyles.icon_line}/></div>
                 {navbarOptions}
             {loginModal}

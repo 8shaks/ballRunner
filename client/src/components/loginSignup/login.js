@@ -5,7 +5,7 @@ import indexStyles from './index.module.css'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from '../../actions/authActions'
-export default class LoginModal extends Component {
+class LoginModal extends Component {
     constructor(props){
         super(props)
         this.state={
