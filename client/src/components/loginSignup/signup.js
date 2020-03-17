@@ -4,13 +4,15 @@ import SEO from '../seo'
 import indexStyles from './index.module.css'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from '../../actions/authActions'
-class LoginModal extends Component {
+import { registerUser } from '../../actions/authActions'
+class SignupModal extends Component {
     constructor(props){
         super(props)
         this.state={
+            email:'',
             username:'',
             password:'',
+            password2:'',
             errors:{},
             validForm :true,
         }
@@ -25,12 +27,17 @@ class LoginModal extends Component {
     checkValid = () =>{
         let errors= {}
         // this.state.firstName === '' ? errors.firstName = 'Please enter a first name' : errors.firstName = ''
-        // this.state.lastName === '' ? errors.lastName = 'Please enter a last name' : errors.lastName = ''
+        this.state.username === '' ? errors.username = 'Please enter a username' : errors.username = null
         this.state.password === '' ? errors.password = 'Please enter a password' : errors.password = null
-        if(this.state.username === ''){
-            errors.username = 'Please enter username'
+        this.state.password2 !== this.state.password ? errors.password2 = 'Your passwords must match' : errors.password2 = null
+        this.state.password2 === '' ? errors.password2 = 'Please renter a password' : errors.password2 = null
+        
+        if(this.state.email === ''){
+            errors.email = 'Please enter an email address'
+        }else if (!this.validateEmail(this.state.email)){
+            errors.email = 'Please enter a valid email address'
         }else{
-            errors.username = null
+            errors.email=null
         }
         // this.state.message === '' ? errors.message = 'Please enter a message' : errors.message = ''
         // this.setState({errors:errors})
@@ -42,7 +49,7 @@ class LoginModal extends Component {
         //     return false
         // }
         this.setState({errors:errors})
-        if (!errors.email  && !errors.password ){
+        if (!errors.username  && !errors.password  && !errors.password2  && !errors.email ){
             this.setState({validForm:true})
             return true
         }else{
@@ -54,26 +61,32 @@ class LoginModal extends Component {
     onSubmit = (e) =>{
         e.preventDefault();
        if(this.checkValid()){
-        this.props.loginUser({username:this.state.username,password:this.state.password});
+        this.props.registerUser({username:this.state.username,email:this.state.email,password:this.state.password, password2:this.state.password2})
        }
         
     }
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
         if (nextProps.errors) {
           this.setState({ errors: nextProps.errors });
         }
       }
     render() {
         const {errors} = this.state
+        console.log(errors)
         let errorUsername = <span className={indexStyles.error}>{errors.username}</span>
         let errorPassword = <span className={indexStyles.error}>{errors.password}</span>
+        let errorEmail = <span className={indexStyles.error}>{errors.email}</span>
+        let errorPassword2 = <span className={indexStyles.error}>{errors.password2}</span>
         return (
             <div  className={indexStyles.modal}>
                 <div className={indexStyles.modal_content}>
-                    <span onClick={this.props.loginToggle} className={indexStyles.close}> &times;</span>
+                    <span onClick={this.props.signupToggle} className={indexStyles.close}> &times;</span>
                     <form className={indexStyles.loginForm}>
-                        <div className={indexStyles.input_group}><span>Username</span><input className={indexStyles.input_large}  value={this.state.username} onChange={this.onChange} name='username' />{errors.username ? errorUsername : null}</div>
-                        <div className={indexStyles.input_group}><span>Password</span><input className={indexStyles.input_large}  value={this.state.password} onChange={this.onChange} name='password' type='password'/>{errors.password ? errorPassword : null}</div>
+                        <div className={indexStyles.input_group}><span>Email</span><input className={indexStyles.input_large}  value={this.state.email} onChange={this.onChange} name='email' />{errors.email  ? errorEmail : null}</div>
+                        <div className={indexStyles.input_group}><span>Username</span><input className={indexStyles.input_large}  value={this.state.username} onChange={this.onChange} name='username' />{this.state.errors.username  ? errorUsername : null}</div>
+                        <div className={indexStyles.input_group}><span>Password</span><input className={indexStyles.input_large}  value={this.state.password} onChange={this.onChange} name='password' type ='password'/>{this.state.errors.password  ? errorPassword : null}</div>
+                        <div className={indexStyles.input_group}><span>Password... Again</span><input className={indexStyles.input_large}  value={this.state.password2} onChange={this.onChange} name='password2' type ='password2'/>{this.state.errors.password2  ? errorPassword2 : null}</div>
                         <button type="submit" className={indexStyles.submit_button} onClick={this.onSubmit} >Submit</button>
                     </form>
                 </div>
@@ -81,8 +94,8 @@ class LoginModal extends Component {
         )
     }
 }
-LoginModal.propTypes = {
-    loginUser: PropTypes.func.isRequired,
+SignupModal.propTypes = {
+    registerUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
   };
@@ -93,5 +106,5 @@ LoginModal.propTypes = {
   
   export default connect(
     mapStateToProps,
-    { loginUser }
-  )(LoginModal);
+    { registerUser }
+  )(SignupModal);

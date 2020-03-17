@@ -1,13 +1,14 @@
-import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER,CLEAR_ERRORS } from "./types";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import {navigate} from 'gatsby';
 
 // REGISTERr
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post("api/users/register", userData)
-    .then(res => history.push("/login"))
+    .then(res => navigate('/done'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -45,7 +46,12 @@ export const setCurrentUser = decoded => {
     payload: decoded
   };
 };
-
+export const resetErrors = () => {
+  return {
+    type: CLEAR_ERRORS,
+    payload: null
+  };
+};
 export const logoutUser = history => dispatch => {
   //Remove token
   localStorage.removeItem("jwtToken");
