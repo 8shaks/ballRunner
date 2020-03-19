@@ -65,6 +65,7 @@ class IndexPage extends Component {
         province:this.state.province,
         country:'Canada'
       }).then((data)=>{
+        console.log(data)
         this.setState({results:data.data.locations})
         
       })
@@ -78,7 +79,6 @@ class IndexPage extends Component {
   onShare = (e) =>{
     if (navigator.share) {
       const url = document.querySelector('link[rel=canonical]') ? document.querySelector('link[rel=canonical]').href : document.location.href;
-
       navigator.share({
         title: 'BallRunner',
         url: url

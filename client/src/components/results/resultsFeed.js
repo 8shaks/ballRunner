@@ -17,9 +17,8 @@ export default class ResultsFeed extends Component {
         if(this.state.resultsLength !== 5){
             this.setState({btnLabel:'Show More' ,resultsLength:5})    
         }else{
-            this.setState({btnLabel:'Show Less' ,resultsLength:10})
+            this.setState({btnLabel:'Show Less' ,resultsLength:this.props.locations.length})
         }
-    
     }
     render() {
         let limitResults = []

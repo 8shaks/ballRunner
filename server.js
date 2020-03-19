@@ -17,19 +17,13 @@ const db = require("./config/keys").mongoURI;
 app.use(passport.initialize());
 
 // require("./config/passport.js")(passport);
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   console.log('sucess')
-//   // perform actions on the collection object
-//   client.close();
-// });
-// mongoose
-//   .connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
-//   .then(() => {
-//     console.log("MongoDB connected");
-//   })
-//   .catch(err => console.log(err));
+
+mongoose
+  .connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch(err => console.log(err));
 
 // app.use("/api/users", users);
 // app.use("/api/profile", profiles);
