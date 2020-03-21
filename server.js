@@ -5,7 +5,6 @@ const courts = require("./routes/api/courts");
 const path = require("path");
 const users = require("./routes/api/user");
 const mongoose = require("mongoose");
-const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 
