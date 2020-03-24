@@ -4,6 +4,8 @@ const passport = require("passport");
 const courts = require("./routes/api/courts");
 const path = require("path");
 const users = require("./routes/api/user");
+const auth = require("./routes/api/auth");
+const profiles = require("./routes/api/profile");
 const mongoose = require("mongoose");
 const MongoClient = require('mongodb').MongoClient;
 
@@ -16,15 +18,8 @@ const db = require("./config/keys").mongoURI;
 
 //passport middleware
 app.use(passport.initialize());
-
 require("./config/passport");(passport);
-const client = new MongoClient(db, { useUnifiedTopology: true,useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  console.log('sucess')
-  // perform actions on the collection object
-  client.close();
-});
+
 mongoose
   .connect(db, { useNewUrlParser: true ,useUnifiedTopology: true})
   .then(() => {
@@ -32,8 +27,9 @@ mongoose
   })
   .catch(err => console.log(err));
 
+app.use("/api/auth", auth);
 app.use("/api/users", users);
-// app.use("/api/profile", profiles);
+app.use("/api/profile", profiles);
 app.use("/api/courts", courts);
 
 // Server static assets if in production

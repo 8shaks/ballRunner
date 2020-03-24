@@ -78,6 +78,7 @@ class SignupModal extends Component {
         let errorPassword = <span className={indexStyles.error}>{errors.password}</span>
         let errorEmail = <span className={indexStyles.error}>{errors.email}</span>
         let errorPassword2 = <span className={indexStyles.error}>{errors.password2}</span>
+        
         return (
             <div  className={indexStyles.modal}>
                 <div className={indexStyles.modal_content}>
@@ -86,7 +87,8 @@ class SignupModal extends Component {
                         <div className={indexStyles.input_group}><span>Email</span><input className={indexStyles.input_large}  value={this.state.email} onChange={this.onChange} name='email' />{errors.email  ? errorEmail : null}</div>
                         <div className={indexStyles.input_group}><span>Username</span><input className={indexStyles.input_large}  value={this.state.username} onChange={this.onChange} name='username' />{this.state.errors.username  ? errorUsername : null}</div>
                         <div className={indexStyles.input_group}><span>Password</span><input className={indexStyles.input_large}  value={this.state.password} onChange={this.onChange} name='password' type ='password'/>{this.state.errors.password  ? errorPassword : null}</div>
-                        <div className={indexStyles.input_group}><span>Password... Again</span><input className={indexStyles.input_large}  value={this.state.password2} onChange={this.onChange} name='password2' type ='password2'/>{this.state.errors.password2  ? errorPassword2 : null}</div>
+                        <div className={indexStyles.input_group}><span>Password... Again</span><input className={indexStyles.input_large}  value={this.state.password2} onChange={this.onChange} name='password2' type ='password'/>{this.state.errors.password2  ? errorPassword2 : null}</div>
+                        
                         <button type="submit" className={indexStyles.submit_button} onClick={this.onSubmit} >Submit</button>
                     </form>
                 </div>

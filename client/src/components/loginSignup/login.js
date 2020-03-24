@@ -54,9 +54,8 @@ class LoginModal extends Component {
     onSubmit = (e) =>{
         e.preventDefault();
        if(this.checkValid()){
-        this.props.loginUser({username:this.state.username,password:this.state.password});
+        this.props.loginUser({username:this.state.username,password:this.state.password})
        }
-        
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
@@ -67,6 +66,7 @@ class LoginModal extends Component {
         const {errors} = this.state
         let errorUsername = <span className={indexStyles.error}>{errors.username}</span>
         let errorPassword = <span className={indexStyles.error}>{errors.password}</span>
+        let errorAuth = <span className={indexStyles.error}>{errors.auth}</span>
         return (
             <div  className={indexStyles.modal}>
                 <div className={indexStyles.modal_content}>
@@ -74,6 +74,7 @@ class LoginModal extends Component {
                     <form className={indexStyles.loginForm}>
                         <div className={indexStyles.input_group}><span>Username</span><input className={indexStyles.input_large}  value={this.state.username} onChange={this.onChange} name='username' />{errors.username ? errorUsername : null}</div>
                         <div className={indexStyles.input_group}><span>Password</span><input className={indexStyles.input_large}  value={this.state.password} onChange={this.onChange} name='password' type='password'/>{errors.password ? errorPassword : null}</div>
+                        {errors.auth ? errorAuth : null}
                         <button type="submit" className={indexStyles.submit_button} onClick={this.onSubmit} >Submit</button>
                     </form>
                 </div>

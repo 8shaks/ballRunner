@@ -11,7 +11,7 @@ import {
 export const getProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
-    .get("/api/profile")
+    .get("/api/profile/me")
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -26,29 +26,12 @@ export const getProfile = () => dispatch => {
     );
 };
 
-export const getProfileByHandle = handle => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get(`/api/profile/handle/${handle}`)
-    .then(res =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      })
-    )
-    .catch(
-      dispatch({
-        type: GET_PROFILE,
-        payload: null
-      })
-    );
-};
 
 //Create Profile
-export const createProfile = (profileData, history) => dispatch => {
+export const createProfile = (profileData) => dispatch => {
   axios
     .post("/api/profile", profileData)
-    .then(res => history.push("/dashboard"))
+    .then(() => window.location.reload())
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -71,21 +54,3 @@ export const clearProfile = () => {
   };
 };
 
-//Get profiles
-export const getProfiles = () => dispatch => {
-  dispatch(setProfileLoading());
-  axios
-    .get("/api/profile/all")
-    .then(res =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_PROFILES,
-        payload: null
-      })
-    );
-};

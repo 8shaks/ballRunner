@@ -7,6 +7,7 @@ import { logoutUser, resetErrors } from "../../actions/authActions";
 import LoginModal from '../loginSignup/login'
 import SignupModal from '../loginSignup/signup'
 import navbarStyles from './navbar.module.css'
+
 class Navbar extends Component {
    constructor(props){
        super(props)
@@ -34,16 +35,23 @@ login = () =>{
         login: !prevState.login
     }))
     this.props.resetErrors()
+    this.setState({navbarClass:navbarStyles.navbar})
 }
 signUp = () =>{
     this.setState(prevState => ({
         signUp: !prevState.signUp
     }))
     this.props.resetErrors()
+    this.setState({navbarClass:navbarStyles.navbar})
+}
+logout = () =>{
+    this.props.logoutUser()
+    this.setState({navbarClass:navbarStyles.navbar})
 }
 
 render() {
-    const { isAuthenticated, user } = this.props.auth;
+
+    const { isAuthenticated, user, loading } = this.props.auth;
     let navbarOptions, loginModal, signupModal;
     if (this.state.login){
         loginModal = <LoginModal loginToggle = {this.login}/>
@@ -55,6 +63,16 @@ render() {
     }else{
         signupModal = null
     }
+    if(isAuthenticated){
+    navbarOptions=(                
+        <ul>
+        <li><a >Welcome </a></li>
+        <li><Link to='/profile' >Profile</Link></li>
+        <li><a onClick={this.logout} >Logout</a></li>
+        {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
+        {/* <li ><a>About Us</a></li> */}
+        </ul>)
+    }else{
     navbarOptions=(                
         <ul>
         <li><a onClick={this.login}>Login</a></li>
@@ -62,6 +80,8 @@ render() {
         {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
         {/* <li ><a>About Us</a></li> */}
         </ul>)
+    }
+  
     return (
         <div className={this.state.navbarClass}> 
             <Link to='/' onClick={this.newPage} className={navbarStyles.navbar_logo}>BallRunner</Link>
