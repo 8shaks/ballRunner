@@ -119,7 +119,7 @@ class IndexPage extends Component {
               </div>
               <div className={indexStyles.input_group}>
                 <span>Province</span>
-                  <select value={this.state.province} onChange={this.onChange} name='province'>
+                  <select value={this.state.province} onBlur={this.onChange} name='province'>
                     <option value="Alberta">Alberta</option>
                     <option value="British Colombia">British Colombia</option>
                     <option value="Manitoba">Manitoba</option>

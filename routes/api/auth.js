@@ -14,8 +14,6 @@ const User = require('../../models/User');
 // @access   Private
 router.get('/', auth, async (req, res) => {
   try {
-    console.log(req.user)
-    const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -52,10 +50,11 @@ router.post('/', async (req, res) => {
 
       const payload = {
         user: {
-          id: user.id
+          id: user.id,
+          username:user.username
         }
       };
-
+      console.log(payload)
       jwt.sign(
         payload,
         keys.secretOrKey,

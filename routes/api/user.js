@@ -26,14 +26,12 @@ router.post('/', async (req, res) => {
       let userEmail = await User.findOne({ email });
       
       if (userEmail) {
-        console.log('yo')
         return res
           .status(400)
           .json({ errors: { email: 'Email already exists' } });
       }
       let userName = await User.findOne({ username });
       if (userName) {
-        console.log('yo')
         return res
           .status(400)
           .json({ errors: { username: 'Username already exists' }});

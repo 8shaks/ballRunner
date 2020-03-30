@@ -31,6 +31,7 @@ router.get('/me', auth, async (req, res) => {
 router.post(
   '/',auth,
   async (req, res) => {
+
     const { errors, isValid } = validateProfileInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);

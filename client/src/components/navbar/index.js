@@ -64,21 +64,22 @@ render() {
         signupModal = null
     }
     if(isAuthenticated){
+        console.log(user)
     navbarOptions=(                
         <ul>
-        <li><a >Welcome </a></li>
-        <li><Link to='/profile' >Profile</Link></li>
-        <li><a onClick={this.logout} >Logout</a></li>
-        {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
-        {/* <li ><a>About Us</a></li> */}
+            <li><Link to='/matchmaking' >Matchmaking</Link></li>
+            <li><Link to='/profile' >Profile</Link></li>
+            <li><button onClick={this.logout} >Logout</button></li>
+            {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
+            {/* <li ><button>About Us</button></li> */}
         </ul>)
     }else{
     navbarOptions=(                
         <ul>
-        <li><a onClick={this.login}>Login</a></li>
-        <li><a onClick={this.signUp}>Sign up</a></li>
+        <li><button onClick={this.login}>Login</button></li>
+        <li><button onClick={this.signUp}>Sign up</button></li>
         {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
-        {/* <li ><a>About Us</a></li> */}
+        {/* <li ><button>About Us</button></li> */}
         </ul>)
     }
   

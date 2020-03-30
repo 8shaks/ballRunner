@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Layout from "../layout"
-import SEO from '../seo'
 import indexStyles from './index.module.css'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

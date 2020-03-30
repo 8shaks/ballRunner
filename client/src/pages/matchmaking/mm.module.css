@@ -1,16 +1,22 @@
 .page{
     font-family: 'Fira Sans', sans-serif;
 }
-.page_heading{
+.heading{
     text-align: center;
 }
-.page_subheading{
+.subheading{
     text-align: center;
     margin: 0 auto;
     width: 50%;
 }
+.steps{
+    margin:1em auto;
+}
+.steps li{
+    margin: 0.5em 0;
+}
 .input_group{
-    margin:0 auto;
+    margin:0.5em auto;
     width:20%;
     display: block;
 }
@@ -28,29 +34,16 @@
     font-size: 0.75em;
     font-style: italic;
 }
-.button_container{
-    margin: 1em auto;
-    width: 10%;
-}
-.submit, .edit{
-    width: 50%;
+
+.submit{
+    width: 100px;
     padding: 6px 8px;
     cursor: pointer;
+    margin: 1em auto;
+    display: block;
+}
 
-}
-.submit{
-    background-color: #F3EC2F;
-    border: 2px solid #C5C5C3;
-    border-right: none;
-    color:black;
 
-}
-.edit{
-    background-color:black ;
-    border: 2px solid #C5C5C3;
-    border-left: none;
-    color:#F3EC2F;
-}
 .errors{
     color:red !important;
     display: block;

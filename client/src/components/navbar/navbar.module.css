@@ -22,21 +22,22 @@
      float:right;
      padding:0 5%;
   }
-  .navbar li a {
+  .navbar li button,  .navbar li a{
     display: block;
     text-align: center;
     text-decoration: none;
     font-size: 1.25em;
     color:white;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
   }
   /* Navbar links on mouse-over */
-  .navbar a:hover {
+  .navbar button:hover, .navbar a:hover {
     color: #D0F4EA;
   }
  
-  .navbar-selected a{
-    color:#D0F4EA ;
-  }
+
   .navbar_logo{
     color:white;
     font-size:2.5em;
@@ -81,7 +82,7 @@
     padding:0;
     
     }
-    .navbar_activated li a {
+    .navbar_activated li button, .navbar_activated li a {
       display: block;
       color: white;
       text-align: center;

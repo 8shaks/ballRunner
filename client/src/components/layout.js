@@ -1,11 +1,11 @@
 
 
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql, navigate } from "gatsby"
+// import { useStaticQuery, graphql, navigate } from "gatsby"
 import store from '../redux/store';
 import "./layout.css"
 import Navbar from './navbar'
-import React, { Component , useEffect} from 'react'
+import React, { useEffect } from 'react'
 import jwt_decode from "jwt-decode";
 import setAuthToken from "../utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "../actions/authActions";
@@ -21,10 +21,10 @@ const Layout = ({children}) => {
 //   }
 // `)
 useEffect(() => {
-  if (localStorage.jwtToken) {
-    setAuthToken(localStorage.jwtToken);
-    const decoded = jwt_decode(localStorage.jwtToken);
-  
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+    const decoded = jwt_decode(localStorage.token);
+    
     store.dispatch(setCurrentUser(decoded));
   
     //Check for expired token
