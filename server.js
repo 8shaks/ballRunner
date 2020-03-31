@@ -39,7 +39,7 @@ app.use("/api/profile", profiles);
 app.use("/api/courts", courts);
 app.use('/api/matchmaking', mm_routing(properties));
 // Server static assets if in production
-
+console.log('hello')
   //set static folder
 
 app.use(express.static("client/public"));

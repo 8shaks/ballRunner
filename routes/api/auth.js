@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json(errors);
     }
     const { username, password } = req.body;
-
+    console.log('hi')
     try {
       let user = await User.findOne({ username });
 
