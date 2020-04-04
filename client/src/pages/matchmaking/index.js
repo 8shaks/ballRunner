@@ -71,7 +71,7 @@ class Profile extends Component {
       
     }
     onCancelQueue = () =>{
-      axios.post('/api/matchmaking/update').get((res)=>{
+      axios.get('/api/matchmaking/update').then((res)=>{
         const { status } = res.data
         this.setState({status})
       }).catch((err) =>{

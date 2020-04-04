@@ -72,7 +72,7 @@ class Profile extends Component {
       } else {
         content = (
           <div>
-            <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Skill Level</span><input disabled={formDisabled} id="skillLevel"  type="number" onChange={this.onChange} value={this.state.skillLevel}/>{errors.skillLevel ? <span className={profileStyles.errors}>{errors.skillLevel}</span> : null}</div>
+            <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Skill Level(0-1000)</span><input disabled={formDisabled} id="skillLevel"  type="number" onChange={this.onChange} value={this.state.skillLevel}/>{errors.skillLevel ? <span className={profileStyles.errors}>{errors.skillLevel}</span> : null}</div>
             <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Phone</span><input disabled={formDisabled} id="phone" onChange={this.onChange} value={this.state.phone}/>{errors.phone ? <span className={profileStyles.errors}>{errors.phone}</span> : null}<span className={profileStyles.input_note}>Please enter a real phone number since we will use this number to contact you once a number has been found.</span></div>
             <div className={profileStyles.button_container}>
               <button className={profileStyles.submit} onClick={this.onSubmit}>Submit</button>

@@ -146,7 +146,6 @@ async function startMatchmakingHandler(properties, ds_manager, req, res){
 
   */
   const skl = req.body.skillLevel;
-  console.log(req.user.username)
   if(!skl){
     return res.status(400).json({errors: {skl: 'You need to include a skill level in your request'}})
   }
