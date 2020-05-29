@@ -1,0 +1,70 @@
+.page{
+    font-family: 'Fira Sans', sans-serif;
+}
+.page_heading{
+    text-align: center;
+}
+.page_subheading{
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
+.input_group{
+    margin:0 auto;
+    width:20%;
+    display: block;
+}
+.input_label{
+    display: block;
+    margin:0.5em 0;
+    font: 1.25em;
+    font-weight: 600;
+}
+.input_group input{
+    width: 100%;
+}
+.input_note{
+    line-height: 1 ;
+    font-size: 0.75em;
+    font-style: italic;
+}
+.button_container{
+    margin: 1em auto;
+    width: 10%;
+}
+.submit, .edit{
+    width: 50%;
+    padding: 6px 8px;
+    cursor: pointer;
+
+}
+.submit{
+    background-color: #F3EC2F;
+    border: 2px solid #C5C5C3;
+    border-right: none;
+    color:black;
+
+}
+.edit{
+    background-color:black ;
+    border: 2px solid #C5C5C3;
+    border-left: none;
+    color:#F3EC2F;
+}
+.errors{
+    color:red !important;
+    display: block;
+    margin:0;
+}
+@media screen and (max-width: 565px) {
+
+}
+/* Tablet */
+@media only screen and (max-width:769px) and (min-width:566px) {
+
+
+}
+@media only screen and (max-width:1024px) and (min-width:770px) {
+
+}
+  

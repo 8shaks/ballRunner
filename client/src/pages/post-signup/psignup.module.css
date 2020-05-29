@@ -1,0 +1,63 @@
+.page{
+    font-family: 'Fira Sans', sans-serif;
+}
+.heading{
+    text-align: center;
+}
+.subheading{
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
+.steps{
+    margin:1em auto;
+}
+.steps li{
+    margin: 0.5em 0;
+}
+.input_group{
+    margin:0.5em auto;
+    width:20%;
+    display: block;
+}
+.input_label{
+    display: block;
+    margin:0.5em 0;
+    font: 1.25em;
+    font-weight: 600;
+}
+.input_group input{
+    width: 100%;
+}
+.input_note{
+    line-height: 1 ;
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+.submit{
+    width: 100px;
+    padding: 6px 8px;
+    cursor: pointer;
+    margin: 1em auto;
+    display: block;
+}
+
+
+.errors{
+    color:red !important;
+    display: block;
+    margin:0;
+}
+@media screen and (max-width: 565px) {
+
+}
+/* Tablet */
+@media only screen and (max-width:769px) and (min-width:566px) {
+
+
+}
+@media only screen and (max-width:1024px) and (min-width:770px) {
+
+}
+  

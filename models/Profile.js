@@ -6,19 +6,11 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
-  handle: {
-    type: String,
 
-    max: 40
+  skillLevel: {
+    type: Number
   },
-  location: {
-    type: String
-  },
-
-  bio: {
-    type: String
-  },
-  username: {
+  phone: {
     type: String
   },
   date: {

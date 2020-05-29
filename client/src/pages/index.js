@@ -106,7 +106,7 @@ class IndexPage extends Component {
           <div className={indexStyles.topbar}/>
           <h1 className={indexStyles.header}>Trying to find some courts?</h1>
           <h2 className={indexStyles.sub_header}>We'll help you out</h2>
-          <i style={{textAlign:'center'}}>Please Note we are currently wokring on login functionality and it is not available yet.</i>
+          <i style={{textAlign:'center'}}>Make an account and try out our matchmaking feature to find someone to play with!</i>
           <div className={indexStyles.flex_container}> 
             <div className={indexStyles.form}>
               <div className={indexStyles.input_group}>
@@ -119,7 +119,7 @@ class IndexPage extends Component {
               </div>
               <div className={indexStyles.input_group}>
                 <span>Province</span>
-                  <select value={this.state.province} onChange={this.onChange} name='province'>
+                  <select value={this.state.province} onBlur={this.onChange} name='province'>
                     <option value="Alberta">Alberta</option>
                     <option value="British Colombia">British Colombia</option>
                     <option value="Manitoba">Manitoba</option>

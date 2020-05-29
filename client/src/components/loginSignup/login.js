@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Layout from "../layout"
-import SEO from '../seo'
 import indexStyles from './index.module.css'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -9,7 +7,7 @@ class LoginModal extends Component {
     constructor(props){
         super(props)
         this.state={
-            email:'',
+            username:'',
             password:'',
             errors:{},
             validForm :true,
@@ -26,13 +24,11 @@ class LoginModal extends Component {
         let errors= {}
         // this.state.firstName === '' ? errors.firstName = 'Please enter a first name' : errors.firstName = ''
         // this.state.lastName === '' ? errors.lastName = 'Please enter a last name' : errors.lastName = ''
-        this.state.password === '' ? errors.password = 'Please enter a phone number' : errors.password = ''
-        if(this.state.email === ''){
-            errors.email = 'Please enter an email address'
-        }else if(!this.validateEmail(this.state.email)){
-            errors.email = 'Please enter a valid email address'
+        this.state.password === '' ? errors.password = 'Please enter a password' : errors.password = null
+        if(this.state.username === ''){
+            errors.username = 'Please enter username'
         }else{
-            errors.email=''
+            errors.username = null
         }
         // this.state.message === '' ? errors.message = 'Please enter a message' : errors.message = ''
         // this.setState({errors:errors})
@@ -44,7 +40,7 @@ class LoginModal extends Component {
         //     return false
         // }
         this.setState({errors:errors})
-        if (errors.email === '' && errors.password === ''){
+        if (!errors.email  && !errors.password ){
             this.setState({validForm:true})
             return true
         }else{
@@ -56,22 +52,27 @@ class LoginModal extends Component {
     onSubmit = (e) =>{
         e.preventDefault();
        if(this.checkValid()){
-        this.props.loginUser({email:this.state.email,password:this.state.password});
+        this.props.loginUser({username:this.state.username,password:this.state.password})
        }
-        
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+          this.setState({ errors: nextProps.errors });
+        }
+      }
     render() {
         const {errors} = this.state
-        let errorEmail = <span className={indexStyles.error}>{errors.email}</span>
+        let errorUsername = <span className={indexStyles.error}>{errors.username}</span>
         let errorPassword = <span className={indexStyles.error}>{errors.password}</span>
+        let errorAuth = <span className={indexStyles.error}>{errors.auth}</span>
         return (
             <div  className={indexStyles.modal}>
                 <div className={indexStyles.modal_content}>
                     <span onClick={this.props.loginToggle} className={indexStyles.close}> &times;</span>
                     <form className={indexStyles.loginForm}>
-                        <div className={indexStyles.input_group}><span>Email</span><input className={indexStyles.input_large}  value={this.state.email} onChange={this.onChange} name='email' />{this.state.validForm ? null : errorEmail}</div>
-                        <div className={indexStyles.input_group}><span>Password</span><input className={indexStyles.input_large}  value={this.state.password} onChange={this.onChange} name='password'/>{this.state.validForm ? null : errorPassword}</div>
-
+                        <div className={indexStyles.input_group}><span>Username</span><input className={indexStyles.input_large}  value={this.state.username} onChange={this.onChange} name='username' />{errors.username ? errorUsername : null}</div>
+                        <div className={indexStyles.input_group}><span>Password</span><input className={indexStyles.input_large}  value={this.state.password} onChange={this.onChange} name='password' type='password'/>{errors.password ? errorPassword : null}</div>
+                        {errors.auth ? errorAuth : null}
                         <button type="submit" className={indexStyles.submit_button} onClick={this.onSubmit} >Submit</button>
                     </form>
                 </div>
