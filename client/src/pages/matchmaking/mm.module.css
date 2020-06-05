@@ -1,13 +1,40 @@
 .page{
-    font-family: 'Fira Sans', sans-serif;
+    background-color: #F0F5F5;
+    padding-bottom: 50px;
+    min-height: 100vh;
 }
-.heading{
+.header{
     text-align: center;
+    color:#06B20B;
+    padding: 2em 0;
 }
-.subheading{
-    text-align: center;
-    margin: 0 auto;
+.header h1{
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+.header p{
     width: 50%;
+    margin: 0 auto;
+    font-size: 18px;
+}
+.process_flexCont{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.process_card{
+    width: 25%;
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 5px;
+}
+.process_card h2{
+    text-align: center;
+}
+.login_prompt{
+    margin-top: 40px;
+    font-size: 30px;
+    text-align: center;
 }
 .steps{
     margin:1em auto;
@@ -16,18 +43,19 @@
     margin: 0.5em 0;
 }
 .input_group{
-    margin:0.5em auto;
+    margin:1.5em auto;
     width:20%;
     display: block;
 }
-.input_label{
-    display: block;
-    margin:0.5em 0;
-    font: 1.25em;
-    font-weight: 600;
-}
+
 .input_group input{
     width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+}
+.input_group input:active, .input_group input:focus{
+    outline: none;
 }
 .input_note{
     line-height: 1 ;
@@ -36,28 +64,96 @@
 }
 
 .submit{
-    width: 100px;
-    padding: 6px 8px;
+    color: white;
+    border: none;
+    background-color: #06B20B;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 16px;
     cursor: pointer;
+    width: 10%;
     margin: 1em auto;
     display: block;
 }
-
 
 .errors{
     color:red !important;
     display: block;
     margin:0;
 }
+.form{
+    margin-top: 50px;
+}
+.inQueue{
+    margin: 5em auto;
+    text-align: center;
+}
+.inQueue h1{
+    margin: 10px auto;
+}
+.inQueue span{
+    margin: 2em auto 0 auto;
+    display: block;
+}
 @media screen and (max-width: 565px) {
-
+    .process_flexCont{
+        display: block;
+    }
+    .process_card{
+        width: 80%;
+        /* font-size: 15px; */
+        margin: 2em auto;
+    }
+    .header p{
+        width: 90%;
+    }
+    .input_group{
+        margin:1.5em auto;
+        width:60%;
+        display: block;
+    }
+    .inQueue{
+        font-size: 0.75em;
+    }
+    .inQueue h3{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .submit{
+        width: 50%;
+    }
 }
 /* Tablet */
 @media only screen and (max-width:769px) and (min-width:566px) {
 
-
+    .process_card{
+        width: 25%;
+        font-size: 12px;
+    }
+    .process_card h2{
+        text-align: center;
+    }
+    .header p{
+        width: 90%;
+    }
+    .input_group{
+        margin:1.5em auto;
+        width:60%;
+        display: block;
+    }
 }
 @media only screen and (max-width:1024px) and (min-width:770px) {
-
+    .submit{
+        color: white;
+        border: none;
+        background-color: #06B20B;
+        padding:10px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 10%;
+        margin: 1em auto;
+        display: block;
+    }
 }
   

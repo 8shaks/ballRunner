@@ -7,7 +7,7 @@ import { navigate } from "gatsby";
 // REGISTERr
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("api/users", userData)
+    .post("/api/users", userData)
     .then(() => navigate('/post-signup'))
     .catch(err =>
       dispatch({

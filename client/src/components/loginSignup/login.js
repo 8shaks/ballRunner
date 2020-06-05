@@ -22,23 +22,12 @@ class LoginModal extends Component {
     }
     checkValid = () =>{
         let errors= {}
-        // this.state.firstName === '' ? errors.firstName = 'Please enter a first name' : errors.firstName = ''
-        // this.state.lastName === '' ? errors.lastName = 'Please enter a last name' : errors.lastName = ''
         this.state.password === '' ? errors.password = 'Please enter a password' : errors.password = null
         if(this.state.username === ''){
             errors.username = 'Please enter username'
         }else{
             errors.username = null
         }
-        // this.state.message === '' ? errors.message = 'Please enter a message' : errors.message = ''
-        // this.setState({errors:errors})
-        // if  ( errors.firstName === '' && errors.lastName === '' &&  errors.phoneNumber === '' && errors.email === ''  && errors.message === '' ){
-        //     this.setState({validForm:true, formComplete:true})
-        //     return true
-        // }else{
-        //     this.setState({validForm:false})
-        //     return false
-        // }
         this.setState({errors:errors})
         if (!errors.email  && !errors.password ){
             this.setState({validForm:true})
@@ -60,6 +49,7 @@ class LoginModal extends Component {
           this.setState({ errors: nextProps.errors });
         }
       }
+
     render() {
         const {errors} = this.state
         let errorUsername = <span className={indexStyles.error}>{errors.username}</span>

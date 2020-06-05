@@ -84,9 +84,6 @@ class Profile extends Component {
       const { isAuthenticated } = this.props.auth
       const { errors, status  } = this.state
       let content;
-      if(!isAuthenticated ){
-          return (<Layout><NotAuth/></Layout>)
-      }
       switch(status){
         case -1:
           content = (
@@ -98,37 +95,25 @@ class Profile extends Component {
           break
         case 0:
           content = (
-            <div>
-              <h1 className={mmStyles.heading}>Start Matchmaking!</h1>
-              <h3 className={mmStyles.subheading}>Fill out the form below to find a match to play basketball with!</h3>
-              <ol className={mmStyles.steps}>
-                <li>Make sure your profile info is filled out, that information is required if you want to use our match making feature.</li>
-                <li>Fill out the information below, currently the matchmaking feature is only available in Ontario.</li>
-                <li>If everything checks out you'll be in our queue! We use the two player's location to find a court in between the two of you.</li>
-                <li>Once we find you a match we'll text the phone number on your profile. You can also come back here for an update.</li>
-                <li>If we don't find a match within 12 hours, we cancel your queue, and you can try again.</li>
-              </ol>
               <div className={mmStyles.form}>
                 <div className={mmStyles.input_group}>
-                  <span>Street Address</span>< input onChange={this.onChange} value={this.state.streetAddress} name='streetAddress'/><br/>
+                  <input placeholder="Street Address" onChange={this.onChange} value={this.state.streetAddress} name='streetAddress'/><br/>
                   {errors.streetAddress ? <span className={mmStyles.errors}>{errors.streetAddress}</span> : null}
                 </div>
                 <div className={mmStyles.input_group}>
-                  <span>City</span><input  onChange={this.onChange} value={this.state.city} name='city'/><br/>
+                  <input  placeholder="City" onChange={this.onChange} value={this.state.city} name='city'/><br/>
                   {errors.city ? <span className={mmStyles.errors}>{errors.city}</span> : null}
                 </div>
                 <button onClick={this.onSubmitStart} className={mmStyles.submit}>Find</button>
                 {errors.profile ? <span style={{textAlign:"center"}} className={mmStyles.errors}>{errors.profile}<br/><br/></span> : null}
               </div>
-
-            </div>
           );
           break
           case 1:
             content = (
-              <div>
+              <div className={mmStyles.inQueue}>
                 <h1 className={mmStyles.heading}>You're currently in queue</h1>
-                <h3 className={mmStyles.subheading}>We're looking for a match for you right now, check your phone often as we'll send you an update there.</h3>
+                <h3 className={mmStyles.subheading}>We're looking for a match for you right now, check your phone often as we'll send you an update there. You can also come back to this page to check for updates</h3>
                 <span>Press the button below to cancel your position in queue.</span>
                 <button onClick={this.onCancelQueue} className={mmStyles.submit}>Cancel</button>
               </div>
@@ -136,7 +121,7 @@ class Profile extends Component {
             break
           case 2:
             content = (
-              <div>
+              <div className={mmStyles.inQueue}>
                 <h1 className={mmStyles.heading}>We found a match!</h1>
                 <h3 className={mmStyles.subheading}>We found a match for you! Check your phone for more details.</h3>
               </div>
@@ -150,10 +135,42 @@ class Profile extends Component {
           );
           break
       }
-  
+      if(!isAuthenticated ){
+        content = (
+            <h3 className={mmStyles.login_prompt}>Log in to start playing some basketball!</h3>
+        )
+      }
       return (
         <Layout>
             <div className={mmStyles.page}>
+              <div className={mmStyles.header}>
+                <h1>Find someone to play with!</h1>
+                <p>Check out our matchmaking service, this feature allows you to find other players to play with at a court convenient to both of you.
+                  keep in mind we're stil in beta and are continually adding features.
+                </p>
+              </div>
+              <div className={mmStyles.process_flexCont}>
+                <div className={mmStyles.process_card}>
+                  <h2>Step 1: Make an account</h2>
+                  <p>Make an account and add some details to your profile. We need your phone number and skill level, (scale of 0 - 1000)
+                    so we can contact you once we find the right match
+
+                  </p>
+                </div>
+                <div className={mmStyles.process_card}>
+                  <h2>Step 2: Start looking for a competitor</h2>
+                  <p>
+                    Once you're logged in you'll see a form below to input your address. Enter the address you want us to use when finding the court between the two of you.
+                  </p>
+                </div>
+                <div className={mmStyles.process_card}>
+                  <h2>Step 3: Sit back!</h2>
+                  <p>
+                    Now all you got to do is sit back and wait. Once we find someone for you to play with we'll contact you immediately via phone to let you know that you found a match 
+                    and what court to head to. Have fun!
+                  </p>
+                </div>
+              </div>
               {content}
             </div>
         </Layout>

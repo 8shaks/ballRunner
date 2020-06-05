@@ -14,7 +14,8 @@ class Profile extends Component {
         skillLevel:null,
         phone:null,
         errors:{},
-        formDisabled : true
+        formDisabled : true,
+        success: false
       }
     }
     componentWillReceiveProps(nextProps){
@@ -33,15 +34,11 @@ class Profile extends Component {
       e.preventDefault()
       this.setState({[e.target.id]:e.target.value})
     }
-    edit = () => {
-      this.setState(prevState => ({
-        formDisabled: !prevState.formDisabled
-      }))
-    }
     onSubmit = () =>{
       const phoneFormat1 = new RegExp(/^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/);
       const phoneFormat2 = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/g);
       let errors = {}
+      this.setState({success:false})
       const skillLevel = parseFloat(this.state.skillLevel)
       if(!phoneFormat1.test(this.state.phone) && !phoneFormat2.test(this.state.phone)){
         errors.phone = "Please enter a valid phone number"
@@ -51,7 +48,9 @@ class Profile extends Component {
       }
       this.setState({errors})
       if(Object.keys(errors).length === 0 && errors.constructor === Object){
-        this.props.createProfile({skillLevel:skillLevel, phone:this.state.phone})
+        this.props.createProfile({skillLevel:skillLevel, phone:this.state.phone}).then(()=>{
+          this.setState({success:true})
+        })
       }
       
     }
@@ -72,23 +71,28 @@ class Profile extends Component {
       } else {
         content = (
           <div>
-            <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Skill Level(0-1000)</span><input disabled={formDisabled} id="skillLevel"  type="number" onChange={this.onChange} value={this.state.skillLevel}/>{errors.skillLevel ? <span className={profileStyles.errors}>{errors.skillLevel}</span> : null}</div>
-            <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Phone</span><input disabled={formDisabled} id="phone" onChange={this.onChange} value={this.state.phone}/>{errors.phone ? <span className={profileStyles.errors}>{errors.phone}</span> : null}<span className={profileStyles.input_note}>Please enter a real phone number since we will use this number to contact you once a number has been found.</span></div>
+            <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Skill Level</span><input placeholder="Scale of 0 - 1000" id="skillLevel"  type="number" onChange={this.onChange} value={this.state.skillLevel}/>{errors.skillLevel ? <span className={profileStyles.errors}>{errors.skillLevel}</span> : null}</div>
+            <div className={profileStyles.input_group}> <span className={profileStyles.input_label}>Phone</span><input id="phone" onChange={this.onChange} value={this.state.phone}/>{errors.phone ? <span className={profileStyles.errors}>{errors.phone}</span> : null}<span className={profileStyles.input_note}>Please enter a real phone number since we will use this number to contact you once a number has been found.</span></div>
             <div className={profileStyles.button_container}>
               <button className={profileStyles.submit} onClick={this.onSubmit}>Submit</button>
-              <button className={profileStyles.edit} onClick={this.edit}>Edit</button>
             </div>
           </div>
         );
       }
-  
+      let postProfile = (
+        <div>
+          <h3 className={profileStyles.postSignup}>You're profile has been sucessfully updated!</h3>
+        </div>
+      )
       return (
         <Layout>
             <div className={profileStyles.page}>
               <h1 className={profileStyles.page_heading}>Welcome to your profile!</h1>
               <h3 className={profileStyles.page_subheading}>Here you can edit your phone number and skill level. These fields are required to use our match making feature. </h3>
               {content}
+              {this.state.success ? postProfile : null}
             </div>
+
         </Layout>
       );
     }

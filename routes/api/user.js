@@ -13,12 +13,13 @@ const User = require('../../models/User');
 // @desc     Register user
 // @access   Public
 router.post('/', async (req, res) => {
+  console.log("Hello")
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       console.log(errors)
       return res.status(400).json({errors:errors});
     }
-    const { username, email, password, password2 } = req.body;
+    const { username, email, password } = req.body;
 
     try {
       let userEmail = await User.findOne({ email });

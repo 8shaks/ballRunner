@@ -1,16 +1,20 @@
 .page{
-    font-family: 'Fira Sans', sans-serif;
+    /* font-family: 'Fira Sans', sans-serif; */
+    padding: 2em 0;
+    background-color: #F0F5F5;
+    min-height: 100vh;
 }
 .page_heading{
+    margin:0em auto 1em auto;
     text-align: center;
 }
 .page_subheading{
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto 4em auto;
     width: 50%;
 }
 .input_group{
-    margin:0 auto;
+    margin:30px auto;
     width:20%;
     display: block;
 }
@@ -22,6 +26,11 @@
 }
 .input_group input{
     width: 100%;
+    padding: 5px;
+    font-size: 14px;
+}
+.input_group input:active, .input_group input:focus{
+    outline: none;
 }
 .input_note{
     line-height: 1 ;
@@ -30,34 +39,38 @@
 }
 .button_container{
     margin: 1em auto;
-    width: 10%;
-}
-.submit, .edit{
-    width: 50%;
-    padding: 6px 8px;
-    cursor: pointer;
-
+    width: 30%;
 }
 .submit{
-    background-color: #F3EC2F;
-    border: 2px solid #C5C5C3;
-    border-right: none;
-    color:black;
+    color: white;
+    border: none;
+    background-color: #06B20B;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+.postSignup{
+    text-align: center;
+    margin-top: 4em;
+}
 
-}
-.edit{
-    background-color:black ;
-    border: 2px solid #C5C5C3;
-    border-left: none;
-    color:#F3EC2F;
-}
 .errors{
     color:red !important;
     display: block;
     margin:0;
 }
-@media screen and (max-width: 565px) {
 
+@media screen and (max-width: 565px) {
+    .page_subheading{
+        width: 100%;
+    }
+    .input_group{
+        margin:30px auto;
+        width:80%;
+        display: block;
+    }
 }
 /* Tablet */
 @media only screen and (max-width:769px) and (min-width:566px) {

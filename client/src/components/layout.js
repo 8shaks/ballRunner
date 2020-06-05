@@ -11,15 +11,7 @@ import setAuthToken from "../utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "../actions/authActions";
 import { clearProfile } from "../actions/profileActions";
 const Layout = ({children}) => {
-//   const data = useStaticQuery(graphql`
-//   query SiteTitleQuery {
-//     site {
-//       siteMetadata {
-//         title
-//       }
-//     }
-//   }
-// `)
+
 useEffect(() => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);

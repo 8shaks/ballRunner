@@ -28,15 +28,17 @@ export const getProfile = () => dispatch => {
 
 //Create Profile
 export const createProfile = (profileData) => dispatch => {
-  axios
-    .post("/api/profile", profileData)
-    .then(() => window.location.reload())
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+  return new Promise(function(resolve,reject){
+    axios
+      .post("/api/profile", profileData)
+      .then(() => resolve(true))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      );
+  })
 };
 
 //Profile Loading

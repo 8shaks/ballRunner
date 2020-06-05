@@ -64,7 +64,6 @@ render() {
         signupModal = null
     }
     if(isAuthenticated){
-        console.log(user)
     navbarOptions=(                
         <ul>
             <li><Link to='/matchmaking' >Matchmaking</Link></li>
@@ -76,18 +75,20 @@ render() {
     }else{
     navbarOptions=(                
         <ul>
-        <li><button onClick={this.login}>Login</button></li>
-        <li><button onClick={this.signUp}>Sign up</button></li>
+        <li><Link to='/login' >Login</Link></li>
+        <li><Link to='/register' >Register</Link></li>
         {/* <li ><Link to='/contact' onClick={this.newPage}>Contact Us</Link></li> */}
         {/* <li ><button>About Us</button></li> */}
         </ul>)
     }
   
     return (
-        <div className={this.state.navbarClass}> 
+        <div className={navbarStyles.wrapper}> 
             <Link to='/' onClick={this.newPage} className={navbarStyles.navbar_logo}>BallRunner</Link>
             <div className={navbarStyles.menu_icon} onClick={this.expandMenu} style={{color:'white'}}><div className={navbarStyles.icon_line}/><div className={navbarStyles.icon_line}/><div className={navbarStyles.icon_line}/></div>
+                <div className={this.state.navbarClass}>
                 {navbarOptions}
+                </div>
             {loginModal}
             {signupModal}
         </div>

@@ -1,0 +1,71 @@
+.flexCont{
+    width: 100%;
+    padding: 5em 0;
+}
+.flexCont h1{
+    text-align: center;
+    color:#06B20B;
+}
+.flexCont form{
+    width: 20%;
+    margin: 0 auto;
+}
+.flexCont input{
+    display: block;
+    margin: 2em auto 0.5em auto;
+    width: 100%;
+    line-height: 1.5;
+    outline:none;
+    padding: 5px;
+}
+
+.homeButton, .awayButton{
+    /* border: none; */
+    margin-top: 1em;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.homeButton:active, .awayButton:focus{
+    outline: none;
+}
+
+.homeButton{
+    color: white;
+    border: none;
+    background-color: #06B20B;
+    margin-right: 20px;
+}
+.awayButton{
+    color: #06B20B;
+    font-weight: 600;
+    border: 1px solid #06B20B;
+    background-color: white;
+    margin-left: 20px;
+}
+
+@media only screen and (max-width: 550px) {
+    .flexCont form{
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+  /* Tablet */
+@media only screen and (max-width:769px) and (min-width:551px) {
+
+}
+@media only screen and (max-width:1024px) and (min-width:770px) {
+
+}
+@media only screen and (min-width:1600px){
+    .flexCont{
+        padding-top: 10em;
+    }
+    .flexCont form{
+        width: 15%;
+    }
+    .flexCont input{
+        font-size: 15px;
+    }
+
+}

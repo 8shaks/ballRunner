@@ -27,12 +27,4 @@ async function courtsFinder (type,lat,lng,locations) {
 }
 
 
-
-// const test = async () =>{
-//     let locations = []
-//     await courtsFinder("school", 43.853060, -79.227233, locations)
-//     console.log(locations[0])
-//     console.log('bruv')
-// }
-// test()
 module.exports = courtsFinder
