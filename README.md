@@ -1,4 +1,4 @@
-# BalRunner
+# BallRunner
 
 A web app that allows suers to find the near basketball court to them, currently it is limited to Ontario, Canada. Currently, I am implementing a matchmaking process which alows users 
 to sign up, and get in queue to find someone to play basketball with. Once an oponent is found in your skill elvel range, we find a court that is convenient
